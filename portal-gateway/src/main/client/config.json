@@ -1,0 +1,25 @@
+{
+  "paths": {
+    "tmp": ".tmp",
+    "dist": "dist",
+    "src": "app",
+    "testSrc": "app",
+    "testOutput": "test-output"
+  },
+  "styles": {
+    "type": "less",
+    "output": "css/app.css"
+  },
+  "proxy": {
+    "baseUrl": "http://127.0.0.1:8888",
+    "context": "/bde"
+  },
+  "keysProxy": {
+    "baseUrl": "http://127.0.0.1:7777",
+    "context": "/keys"
+  },
+  "infowasProxy": {
+    "baseUrl": "http://127.0.0.1:6666",
+    "context": "/infowas"
+  }
+}

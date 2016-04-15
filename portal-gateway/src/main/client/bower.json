@@ -1,0 +1,10 @@
+{
+  "name": "portal",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "angularjs#~1.5.3",
+    "angular-mocks": "~1.5.3",
+    "angular-ui-router": "~0.2.18"
+  },
+  "devDependencies": {}
+}
