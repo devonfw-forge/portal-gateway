@@ -9,25 +9,19 @@ import { Role } from './security/role.class';
 
 angular.module('portal', [portalGeneral, portalRouter])
   .config(function ($locationProvider:ng.ILocationProvider, routerProvider:RouterProvider,
-                    $urlRouterProvider:angular.ui.IUrlRouterProvider, $stateProvider:angular.ui.IStateProvider) {
+                    $urlRouterProvider:angular.ui.IUrlRouterProvider) {
     $locationProvider.html5Mode(false);
 
     routerProvider
       .addApplication('/app1/')
       .label('APP1')
+      .allowAnyRoleOf(Role.APP1_USER)
+
+      .addApplication('/app2/')
+      .label('APP2')
       .allowAnyRoleOf(Role.APP1_USER);
 
-    $stateProvider.state('welcome', {
-      url: '/portal/welcome',
-      template: '<h1>Welcome</h1>',
-      resolve: {
-        testMe: function () {
-          return 'test';
-        }
-      }
-    });
-
-    $urlRouterProvider.when('', '/portal/welcome');
+    $urlRouterProvider.when('', '/portal/home');
   })
   .run(function (router:Router) {
     router.switchBetweenApplicationsOnLocationChangeSuccess();
