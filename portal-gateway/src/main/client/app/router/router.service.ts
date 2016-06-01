@@ -62,6 +62,10 @@ export interface IApplication {
 
 export class Router {
   private currentApp:IApplication;
+  /**
+   * Indicates if an application configured in this router is currently shown. If not, a ui-router state is shown.
+   */
+  private appIsShown:boolean;
 
   constructor(private $rootScope:ng.IRootScopeService, private $location:ng.ILocationService,
               private $urlRouter:angular.ui.IUrlRouterService, private $state:angular.ui.IStateService,
@@ -72,6 +76,15 @@ export class Router {
   getApplicationsUserIsAuthorizedFor():IApplication[] {
     // TODO authorization check
     return this.applications;
+  }
+
+  getIdOrStateNameOfCurrentApp():string {
+    if (this.appIsShown) {
+      return this.currentApp.id;
+    } else {
+      let currentState = this.$state.current;
+      return currentState ? currentState.name : '';
+    }
   }
 
   switchBetweenApplicationsOnLocationChangeSuccess():void {
@@ -89,21 +102,26 @@ export class Router {
           this.noMatchingStateDetector.reset();
 
           this.currentApp = appToWhichCurrentPathLeads;
+          this.appIsShown = true;
           let requestedAppId = appToWhichCurrentPathLeads.id;
+          let requestedAppSrc = appToWhichCurrentPathLeads.src;
           // send an event and move it to the event handler
           // show spinner
-          this.viewContainerManager.hideCurrentAppOrStateAndShowRequestedApp(currentAppId, requestedAppId, '')
+          this.viewContainerManager.hideCurrentAppOrStateAndShowRequestedApp(currentAppId, requestedAppId, requestedAppSrc)
             .then(function () {
               // hide spinner
             }, function () {
               // hide spinner
             });
         }, () => {
+          this.appIsShown = false;
           this.$state.go('notAuthorized');
         });
       } else if (this.noMatchingStateDetector.isDetected()) { // neither a portal app nor a ui-router state found
+        this.appIsShown = false;
         this.$state.go('pageNotFound');
       } else { // a ui-router state found and is about to be entered
+        this.appIsShown = false;
         // check security / make the ui-router container visible and the iframe one invisible
         this.viewContainerManager.hideApplicationAndShowState(currentAppId);
       }
