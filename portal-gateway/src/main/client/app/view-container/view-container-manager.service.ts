@@ -82,7 +82,7 @@ export class ViewContainerManager {
   private createAppIframe(appId:string, appSrc:string):any {
     let appIframe = this.getCurrentDocument().createElement('iframe');
     appIframe.setAttribute('id', appId);
-    appIframe.setAttribute('src', appSrc || 'http://aol.com');
+    appIframe.setAttribute('src', appSrc);
     appIframe.setAttribute('scrolling', 'yes');
     appIframe.style.border = 'none';
     appIframe.style.width = '100%';
