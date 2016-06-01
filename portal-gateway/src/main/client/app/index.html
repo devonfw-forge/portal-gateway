@@ -11,10 +11,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="version" content="${project.version}">
-  <meta name="timestamp" content="${timestamp}">
-  <meta name="buildNumber" content="${buildNumber}">
-  <meta name="branch" content="${scmBranch}">
   <title>Portal Gateway</title>
   <!-- build:css css/app.css -->
   <link rel="stylesheet" href="css/app.css">
@@ -22,16 +18,13 @@
 </head>
 <body id="portal" class="portal" data-ng-app="portal">
 <!-- process:include general/layout/browsehappy.html --><!-- /process -->
-<section class="main" data-ng-controller="PortalAppCtrl as ctrl">
+<section class="main">
   <portal-nav></portal-nav>
   <section class="view-container">
     <section id="ui-router-states" data-ui-view></section>
     <section id="portal-apps"></section>
   </section>
 </section>
-
-<!--<div data-spinner="globalSpinner"></div>-->
-<!--<div growl></div>-->
 
 <!-- process:remove:prod -->
 <script src="../node_modules/systemjs/dist/system.js"></script>
