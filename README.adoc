@@ -1,0 +1,39 @@
+= Portal Gateway
+
+This is a demo of the Portal Gateway. It is a lean JavaScript / Java solution to integrate microservices and 3rd party
+applications into one portal so that a user has the impression that he works with one system, although it is made up of
+parts run in their own processes.
+
+=== Install prerequisites
+
+You need a Git client and Java 8 installed on your machine.
+
+=== Install the Project Seed
+
+Clone the `portal-gateway` repository:
+
+....
+git clone https://github.com/devonfw/portal-gateway.git
+....
+
+Build the application:
+
+....
+cd portal-gateway
+mvnw clean package
+....
+
+this may take several minutes for the first time.
+
+Run app1, app2 and the Portal Gateway itself (note: each command below starts a separate process):
+
+....
+java -jar app1\target\app1-0.0.1-SNAPSHOT.jar
+java -jar app2\target\app2-0.0.1-SNAPSHOT.jar
+java -jar portal-gateway\target\portal-gateway-0.0.1-SNAPSHOT.jar
+....
+
+Open http://localhost:8080[http://localhost:8080] in your browser.
+
+Enjoy :)
+
