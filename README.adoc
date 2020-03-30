@@ -13,7 +13,7 @@ You need a Git client and Java 8 installed on your machine.
 Clone the `portal-gateway` repository:
 
 ....
-git clone https://github.com/devonfw/portal-gateway.git
+git clone https://github.com/devonfw-forge/portal-gateway.git
 ....
 
 Build the application:
